@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Main-Class: harmoland.sereinfish.bot.Start
+Class-Path: ktor-client-core-jvm-1.3.2.jar mirai-core-1.1.12.jar kotlinx
+ -coroutines-io-0.1.16.jar asm-tree-8.0.1.jar kotlin-serialization-1.3.7
+ 2.jar ktor-http-1.3.2.jar kotlinx-serialization-runtime-0.20.0.jar kotl
+ inx-io-0.1.16.jar logback-core-1.2.3.jar mirai-core-qqandroid-1.1.12.ja
+ r kotlin-stdlib-jdk7-1.3.70.jar ktor-client-core-1.3.2.jar YuQ-Mirai-0.
+ 0.6.10.jar kotlinx-coroutines-core-1.3.7.jar asm-analysis-8.0.1.jar kto
+ r-utils-1.3.2.jar Yu-Core-0.1.4.7.jar ktor-io-1.3.2.jar jcekt-common-1.
+ 0.0.jar atomicfu-common-0.14.2.jar fastjson-1.2.73.jar kotlinx-serializ
+ ation-protobuf-common-0.20.0.jar ktor-network-1.3.2.jar javax.inject-1.
+ jar kotlinx-io-jvm-0.1.16.jar ktor-client-cio-1.3.2.jar okhttp-4.7.2.ja
+ r asm-util-8.0.1.jar kotlinx-coroutines-core-common-1.3.7.jar jcekt-1.0
+ .0.jar kotlinx-coroutines-io-jvm-0.1.16.jar kotlinx-serialization-proto
+ buf-0.20.0.jar bcprov-jdk15on-1.64.jar asm-8.0.1.jar validation-api-1.1
+ .0.Final.jar logback-classic-1.2.3.jar ecj-3.22.0.jar kotlinx-serializa
+ tion-runtime-common-0.20.0.jar ktor-http-jvm-1.3.2.jar atomicfu-0.14.2.
+ jar ktor-io-jvm-1.3.2.jar asm-commons-8.0.1.jar sqlite-jdbc-3.7.2.jar a
+ nnotations-13.0.jar okio-2.6.0.jar kotlin-stdlib-1.3.72.jar ehcache-2.1
+ 0.2.jar ktor-http-cio-1.3.2.jar ktor-network-tls-1.3.2.jar ktor-http-ci
+ o-jvm-1.3.2.jar kotlin-reflect-1.3.72.jar gson-2.8.6.jar YuQ-0.0.6.10.j
+ ar slf4j-api-1.7.25.jar kotlin-stdlib-common-1.3.72.jar ktor-utils-jvm-
+ 1.3.2.jar
+
