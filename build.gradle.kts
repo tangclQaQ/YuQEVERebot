@@ -33,7 +33,6 @@ repositories {
 
 dependencies {
     implementation("com.IceCreamQAQ.YuQ:YuQ-ArtQQ:0.0.6.10-R37")
-
 }
 
 tasks {

@@ -11,6 +11,7 @@ import com.icecreamqaq.yuq.entity.Member;
 import com.icecreamqaq.yuq.message.Message;
 import com.icecreamqaq.yuq.message.MessageItem;
 import com.icecreamqaq.yuq.message.MessageItemFactory;
+import wiki.IceCream.yuq.demo.base.DataBase;
 
 import javax.inject.Inject;
 
@@ -133,6 +134,7 @@ public class TestGroupController {
             sb.ban(time);
             return "好的";
         }
+
         qq.ban(time);
         return "您没有使用该命令的权限！为了防止恶意操作，你已被禁言相同时间。";
     }
