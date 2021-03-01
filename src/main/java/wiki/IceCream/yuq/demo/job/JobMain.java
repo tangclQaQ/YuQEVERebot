@@ -21,16 +21,16 @@ public class JobMain {
      *
      * 时钟任务方法不接受任何参数，也不接受任何返回值。
      */
-    @Cron("10s")
-    public void ten() {
-        System.out.println("到十秒钟啦！");
-    }
+//    @Cron("10s")
+//    public void ten() {
+//        System.out.println("到十秒钟啦！");
+//    }
 
     @Inject
     private DateUtil dateUtil;
 
     @Inject
-    private YuQ yuq;
+    public static YuQ yuq;
 
     @Cron("At::h::00")
     public void printTime() {

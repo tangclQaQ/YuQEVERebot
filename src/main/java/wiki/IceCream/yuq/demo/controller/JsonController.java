@@ -19,10 +19,10 @@ public class JsonController extends QQController {
      * Message 的相关快捷方法，被封装在 Message 的伴生对象内，既为 Message.Companion。
      * Message.Companion.firstString 方法，获取 MessageBody 的第一个文字元素，并且转换为 String。
      */
-    @Action("准备json")
-    public JsonEx json(ContextSession session) {
-        reply("您请说");
-        return mif.jsonEx(Message.Companion.firstString(session.waitNextMessage()));
-    }
+//    @Action("准备json")
+//    public JsonEx json(ContextSession session) {
+//        reply("您请说");
+//        return mif.jsonEx(Message.Companion.firstString(session.waitNextMessage()));
+//    }
 
 }

@@ -20,24 +20,24 @@ public class TestContextController {
      * Save 注解表示，当 Action 正常完成时，将本参数内容，保存到 Session，可以供后续注入。
      * Save 保存名为 Named 注解声明内容，如参数未声明 Named 注解，则为参数名。
      */
-    @Action("bindPhone")
-    @NextContext("phoneVerKey")
-    @ContextTip("请输入手机号码。")
-    @ContextTip(value = "手机号码输入错误，请重新输入。", status = 1)
-    public void bindPhone(@Save @PathVar(0) String phone) {
-        if (phone.length() != 11) throw new NextActionContext("bindPhone", 1);
-    }
-
-    /***
-     * 此处的 phone 则是上一步中保存下来的 phone
-     * 当不再提供一个 NextContext 时，则完成一个上下文，回归普通。
-     */
-    @Action("phoneVerKey")
-    @ContextTip("请输入手机验证码。")
-    @ContextTip(value = "手机验证码输入错误，请重新输入。", status = 1)
-    public String phoneVerKey(@PathVar(0) String key, String phone) {
-        if (key.length() != 4) throw new NextActionContext("phoneVerKey", 1);
-        return String.format("您要绑定的手机号为：%s，手机验证码为：%s，绑定成功！", phone, key);
-    }
+//    @Action("bindPhone")
+//    @NextContext("phoneVerKey")
+//    @ContextTip("请输入手机号码。")
+//    @ContextTip(value = "手机号码输入错误，请重新输入。", status = 1)
+//    public void bindPhone(@Save @PathVar(0) String phone) {
+//        if (phone.length() != 11) throw new NextActionContext("bindPhone", 1);
+//    }
+//
+//    /***
+//     * 此处的 phone 则是上一步中保存下来的 phone
+//     * 当不再提供一个 NextContext 时，则完成一个上下文，回归普通。
+//     */
+//    @Action("phoneVerKey")
+//    @ContextTip("请输入手机验证码。")
+//    @ContextTip(value = "手机验证码输入错误，请重新输入。", status = 1)
+//    public String phoneVerKey(@PathVar(0) String key, String phone) {
+//        if (key.length() != 4) throw new NextActionContext("phoneVerKey", 1);
+//        return String.format("您要绑定的手机号为：%s，手机验证码为：%s，绑定成功！", phone, key);
+//    }
 
 }

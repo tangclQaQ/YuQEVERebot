@@ -6,12 +6,14 @@ import com.IceCreamQAQ.Yu.job.JobManager;
 import com.icecreamqaq.yuq.YuQ;
 import com.icecreamqaq.yuq.annotation.GroupController;
 import com.icecreamqaq.yuq.annotation.NextContext;
+import com.icecreamqaq.yuq.entity.Contact;
 import com.icecreamqaq.yuq.entity.Group;
 import com.icecreamqaq.yuq.entity.Member;
 import com.icecreamqaq.yuq.message.Message;
 import com.icecreamqaq.yuq.message.MessageItem;
 import com.icecreamqaq.yuq.message.MessageItemFactory;
-import wiki.IceCream.yuq.demo.base.DataBase;
+import com.icecreamqaq.yuq.message.Text;
+import wiki.IceCream.yuq.demo.base.SearchMarket;
 
 import javax.inject.Inject;
 
@@ -33,7 +35,10 @@ public class TestGroupController {
      * MessageItemFactory 用来创建 Message 的具体内容。
      */
     @Inject
-    private MessageItemFactory mif;
+    private static MessageItemFactory mif;
+
+    @Inject
+    private SearchMarket searchMarket;
 
     /***
      * Before 则为具体的控制器的动作前置验证，也可以称作拦截器，负责在 Action 处理消息之前进行验证。
@@ -56,12 +61,78 @@ public class TestGroupController {
      *
      * 一个 Controller 类内，可以接受多个 Before，他们按照一定的顺序依次执行，当所有 Before 执行完成之后，将继续执行 Action。
      */
-    @Before
-    public void before(long qq) {
-        if (qq % 2 == 0) throw mif.text("你没有使用该命令的权限！").toMessage().toThrowable();
-    }
+//    @Before
+//    public void before(long qq) {
+//        if (qq % 2 == 0) throw mif.text("你没有使用该命令的权限！").toMessage().toThrowable();
+//    }
 
     private boolean menuFlag = true;
+
+    /***
+     * Action 内，不仅可以写单级指令，还可以写多级指令。
+     * 最后的 {flag} 则代表了一个可变内容，他可以根据方法参数类型，自动映射为指定类型。
+     */
+    @Action(".jita {name}")
+    public Object searchCnMarket(long qq, String name) {
+        return mif.at(qq).plus(searchMarket.searchMarket(name, true, 3));
+    }
+
+    @Action(".ojita {name}")
+    public Object searchEuMarket(long qq, String name) {
+        return mif.at(qq).plus(searchMarket.searchMarket(name, false, 3));
+    }
+
+    @Action("{param1}机器人{param2}")
+    public String chat(String param1, String param2) {
+        return searchMarket.chat(param1 + "小微" + param2);
+    }
+
+    @Action("{param1}市场机{param2}")
+    public String chat1(String param1, String param2) {
+        return searchMarket.chat(param1 + "小微" + param2);
+    }
+
+    @Action("{param1}市场鸡{param2}")
+    public String chat2(String param1, String param2) {
+        return searchMarket.chat(param1 + "小微" + param2);
+    }
+
+    @Action("{param1}彩虹{param2}")
+    public String caihongpi(String param1, String param2) {
+        return searchMarket.caihongpi();
+    }
+
+    @Action("帮助")
+    public Object menu(long qq) {
+        String help = "1:KM记录查询,格式：击坠/损失+角色ID (未完成）\n" +
+                "2:装配方案查询,格式：装配+船只名 (分类复制名称即可回复)不全面，没时间做(未完成）\n" +
+                "3:国服市场查询,格式：.jita 马克瑞级\n" +
+                "4:欧服物价 .ojita+后缀\n" +
+                "5:虫洞查询,格式：虫洞+后缀，要空格。(待开发)\n" +
+                "6:简略角色简介,格式：人物+后缀(待开发)\n" +
+                "7:增强时间查询(未完成）\n" +
+                "8:国服攻略(待开发)\n" +
+                "10：eve状态 格式：实时状态(待开发)\n" +
+                "11：EVE新闻或EVE公告(待开发)\n" +
+                "15::欧服完全攻略(待开发)\n" +
+                "目前应该可以自动通过好友申请和群邀请了。";
+        return mif.at(qq).plus(help);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    public static MessageItemFactory getMif() {
+        return mif;
+    }
 
     /***
      * Action 则为具体的控制器的动作，负责处理收到的消息。
@@ -87,16 +158,16 @@ public class TestGroupController {
      *   当您想中断处理链路，并且不进行任何返回的时候，您可以抛出 DoNone 类型的异常。
      * @return
      */
-    @Action("菜单")
-    public Object menu(long qq) {
-        if (menuFlag)
-            return mif.at(qq).plus("，您好。\n" +
-                    "这里是基础菜单。" +
-                    "但是由于这是一个演示 Demo，他没有什么功能。" +
-                    "所以也并没有菜单。" +
-                    "那就这样吧。");
-        return "菜单被禁用！";
-    }
+//    @Action("菜单")
+//    public Object menu(long qq) {
+//        if (menuFlag)
+//            return mif.at(qq).plus("，您好。\n" +
+//                    "这里是基础菜单。" +
+//                    "但是由于这是一个演示 Demo，他没有什么功能。" +
+//                    "所以也并没有菜单。" +
+//                    "那就这样吧。");
+//        return "菜单被禁用！";
+//    }
 
     /***
      * Action 内，不仅可以写单级指令，还可以写多级指令。

@@ -1,23 +1,45 @@
 package wiki.IceCream.yuq.demo.event;
 
+import ch.qos.logback.core.util.FileUtil;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
 import com.IceCreamQAQ.Yu.annotation.Event;
 import com.IceCreamQAQ.Yu.annotation.EventListener;
 import com.IceCreamQAQ.Yu.event.events.AppStartEvent;
+import com.icecreamqaq.yuq.event.GroupInviteEvent;
+import com.icecreamqaq.yuq.event.GroupMessageEvent;
 import com.icecreamqaq.yuq.event.NewFriendRequestEvent;
+import com.icecreamqaq.yuq.message.At;
+import com.icecreamqaq.yuq.message.Message;
+import com.icecreamqaq.yuq.message.MessageItem;
+import com.icecreamqaq.yuq.message.Text;
+import wiki.IceCream.yuq.demo.base.SearchMarket;
+import wiki.IceCream.yuq.demo.controller.TestGroupController;
 
+import javax.inject.Inject;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import static wiki.IceCream.yuq.demo.untils.StaticFunction.qDebug;
 
 @EventListener
 public class FriendListEvent {
 
-//    var itemList: MutableMap<Int, Any> = TreeMap()
-    Map<Integer, String> itemList;
+    @Inject
+    private SearchMarket searchMarket;
+
+    public TreeMap<String, Integer> itemList = new TreeMap<String, Integer>(new Comparator<String>() {
+        @Override
+        public int compare(String o1, String o2) {
+            return o1.compareTo(o2);
+        }
+    });;
 
     /***
      * 事件的注册，并不会限制你在某个类去注册，只要你的类标记了 EventListener_ 注解。
@@ -33,25 +55,60 @@ public class FriendListEvent {
         event.setCancel(true);
     }
 
+    @Event
+    public void newGroupRequestEvent(GroupInviteEvent event) {
+        event.setAccept(true);
+        event.setCancel(true);
+    }
+
     //软件启动时的事件
     @Event
     public void AppEnableEvent(AppStartEvent event) {
         System.out.print("--------------------------------------------------------------");
         System.out.print("LoadItemListEvent");
         ExcelReader reader = null;
-        try {
-            reader = ExcelUtil.getReader(this.getClass().getResource("conf/123.xls").openStream(), 0);
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        reader = ExcelUtil.getReader("D://123.xls", 0);
+        if(reader != null) {
+            for (int i = 1; i < reader.getSheet().getLastRowNum(); i++) {
+                int aCell =(int) reader.getCell(0, i).getNumericCellValue();
+                String bCell = reader.getCell(1, i).toString();
+                itemList.put(bCell, aCell);
+            }
         }
-//        if(reader != null) {
-//            for (int i = 0; i < reader.getPhysicalRowCount(); i++) {
-//                String aCell = reader.getCell(0, i).toString();
-//                String bCell = reader.getCell(1, i).toString();
-////                itemList[Integer.valueOf(aCell)] = bCell;
-//            }
-//        }
+        System.out.print("数据总数量：" + String.valueOf(itemList.size()) + "\n");
     }
 
+    @Event
+    public void newGroupMessageEventt(GroupMessageEvent message) {
+        MessageItem iat = message.getMessage().getBody().get(0);
+        for (MessageItem messageItem1 : message.getMessage().getBody()) {
+            if (messageItem1 instanceof Text){
+                Text text = (Text) messageItem1;
+                String textStr = text.getText();
+                textStr = textStr.trim();
+                if(textStr.contains("爱") ||textStr.contains("喜欢")) {
+                    message.getGroup().sendMessage(TestGroupController.getMif().text(searchMarket.caihongpi()).toMessage());
+                }
+            }
+        }
+        if (iat instanceof At){
+            At at = (At) iat;
+            if (at.getUser() == 2938604711L){
+                StringBuilder sb = new StringBuilder();
+                for (MessageItem messageItem : message.getMessage().getBody()) {
+                    if (messageItem instanceof Text){
+                        Text text = (Text) messageItem;
+                        String textStr = text.getText();
+                        textStr = textStr.trim();
+                        if ("读消息".equals(textStr)) return;
+                        sb.append(textStr);
+                    }
+                }
+                String textChat = searchMarket.chat(sb.toString());
+                message.getGroup().sendMessage(TestGroupController.getMif().at(message.getSender().getId()).plus(textChat));
+            }
+        }
+    }
 
 }

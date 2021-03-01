@@ -19,13 +19,13 @@ public class BpController extends QQController {
      * Message 的相关快捷方法，被封装在 Message 的伴生对象内，既为 Message.Companion。
      * Message.Companion.firstString 方法，获取 MessageBody 的第一个文字元素，并且转换为 String。
      */
-    @Action("绑手机")
-    public String bp(ContextSession session) {
-        reply("请输入手机号码");
-        String phone = Message.Companion.firstString(session.waitNextMessage());
-        reply("请输入手机验证码");
-        String key = Message.Companion.firstString(session.waitNextMessage());
-        return String.format("您输入的手机号码为：%s，手机验证码为：%s。", phone, key);
-    }
+//    @Action("绑手机")
+//    public String bp(ContextSession session) {
+//        reply("请输入手机号码");
+//        String phone = Message.Companion.firstString(session.waitNextMessage());
+//        reply("请输入手机验证码");
+//        String key = Message.Companion.firstString(session.waitNextMessage());
+//        return String.format("您输入的手机号码为：%s，手机验证码为：%s。", phone, key);
+//    }
 
 }
