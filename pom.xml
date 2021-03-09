@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.IceCreamQAQ.YuQ</groupId>
             <artifactId>YuQ-ArtQQ</artifactId>
-            <version>0.0.6.10-R37</version>
+            <version>0.0.6.10-R43</version>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>

@@ -1,5 +1,6 @@
 package wiki.IceCream.yuq.demo.base;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import wiki.IceCream.yuq.demo.event.FriendListEvent;
 
@@ -31,10 +32,10 @@ public class SearchMarket {
     public String searchMarket(String name, Boolean isCn, int num) {
         String result = "查询结果：\n";
         int i = 0;
-        for(HashMap.Entry<String, Integer> entry : loadEvent.itemList.entrySet()) {
-            if(MapUtil.checkKey(entry.getKey(), name)) {
+        for (HashMap.Entry<String, Integer> entry : loadEvent.itemList.entrySet()) {
+            if (MapUtil.checkKey(entry.getKey(), name)) {
                 String url = "";
-                if(isCn) {
+                if (isCn) {
                     url = cnMarketUrl + String.valueOf(entry.getValue()) + ".json";
                 } else {
                     url = euMarketUrl + String.valueOf(entry.getValue()) + ".json";
@@ -47,7 +48,7 @@ public class SearchMarket {
                         result = result + entry.getKey() + ":\n";
                         result = result + midResult + "\n";
                     }
-                    if(i == num) {
+                    if (i == num) {
                         break;
                     }
                 } catch (IOException e) {
@@ -56,7 +57,7 @@ public class SearchMarket {
                 }
             }
         }
-        if("查询结果：\n" == result) {
+        if ("查询结果：\n" == result) {
             result = "未有合理反馈结果。可能名称错误或目前尚无对应价格。";
         } else {
             result = result + "数据来源：ceve-market";
@@ -130,7 +131,7 @@ public class SearchMarket {
         urlConnection = new URL(url).openConnection();
 
         // 将链接转换为HTTPS链接
-        HttpsURLConnection urlCon = (HttpsURLConnection)urlConnection;
+        HttpsURLConnection urlCon = (HttpsURLConnection) urlConnection;
 
         // 设置HTTPMethod，当前仅只是GET和POST
         urlCon.setRequestMethod(httpsRequestMethod);
@@ -141,7 +142,7 @@ public class SearchMarket {
 
         // 添加请求头部
         if (headers != null) {
-            for (Map.Entry<String, String> kv: headers.entrySet()) {
+            for (Map.Entry<String, String> kv : headers.entrySet()) {
                 urlCon.setRequestProperty(kv.getKey(), kv.getValue());
             }
         }
@@ -176,11 +177,10 @@ public class SearchMarket {
         String params = "{\"BotId\":" + "\"" + botId + "\"" + "," +
                 "\"BotEnv\":" + "\"" + botEnv + "\"" + "," +
                 "\"TerminalId\":" + "\"" + terminalId + "\"" + "," +
-                "\"InputText\":" + "\"" + inputText + "\"" + ","  +
-                "\"SessionAttributes\": " + "\"" + sessionAttributes + "\"" + ","  +
-                "\"PlatformType\":" + "\"" + platformType + "\"" + ","  +
+                "\"InputText\":" + "\"" + inputText + "\"" + "," +
+                "\"SessionAttributes\": " + "\"" + sessionAttributes + "\"" + "," +
+                "\"PlatformType\":" + "\"" + platformType + "\"" + "," +
                 "\"PlatformId\":" + "\"" + platformId + "\"" + "}";
-
 
 
         // 腾讯云api公共参数
@@ -204,7 +204,7 @@ public class SearchMarket {
         headers.put("Authorization", authorization);
 
         // 发送https请求
-        String resp = httpsExecute("POST", "https://" + host,headers, params);
+        String resp = httpsExecute("POST", "https://" + host, headers, params);
 
         return resp;
     }
@@ -232,7 +232,7 @@ public class SearchMarket {
             e.printStackTrace();
         }
         System.out.println(response);
-        if(response != null) {
+        if (response != null) {
             JSONObject chatInfo = JSONObject.parseObject(response);
             String ret = chatInfo.getJSONObject("Response").getString("ResponseText");
             return ret;
@@ -244,6 +244,59 @@ public class SearchMarket {
     public String caihongpi() {
         try {
             return HttpConn.httpGet("https://chp.shadiao.app/api.php");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "网络出错啦！";
+        }
+    }
+
+    //藏头诗
+    public String cangtoushi(String text) {
+        try {
+            String result = HttpConn.httpGet("http://api.tianapi.com/txapi/cangtoushi/index?key=958ffed0b06c952d299d80677c37fd58&word=" + text);
+            JSONObject obj = JSONObject.parseObject(result);
+            int code = obj.getInteger("code");
+            if (code == 200) {
+                JSONArray array = obj.getJSONArray("newslist");
+                if (array.size() >= 1) {
+                    String returnText = array.getJSONObject(0).getString("list");
+                    returnText = returnText.replace('，', '\n');
+                    returnText = returnText.replace('。', '\n');
+                    returnText = returnText.substring(0, returnText.length() - 1);
+                    return returnText;
+                } else {
+                    return "数据异常";
+                }
+            } else if (code == 150) {
+                return "该免费接口可用调用次数用完了，各位哥哥姐姐快给作者投个食，让他给这个api充个值吧";
+            } else {
+                return obj.getString("msg");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "网络出错啦！";
+        }
+    }
+
+    //土味情话
+    public String tuweiqinghua() {
+        try {
+            String result = HttpConn.httpGet("http://api.tianapi.com/txapi/saylove/index?key=958ffed0b06c952d299d80677c37fd58");
+            JSONObject obj = JSONObject.parseObject(result);
+            int code = obj.getInteger("code");
+            if (code == 200) {
+                JSONArray array = obj.getJSONArray("newslist");
+                if (array.size() >= 1) {
+                    String returnText = array.getJSONObject(0).getString("content");
+                    return returnText;
+                } else {
+                    return "数据异常";
+                }
+            } else if (code == 150) {
+                return "该免费接口可用调用次数用完了，各位哥哥姐姐快给作者投个食，让他给这个api充个值吧，或者第二天再玩";
+            } else {
+                return obj.getString("msg");
+            }
         } catch (IOException e) {
             e.printStackTrace();
             return "网络出错啦！";

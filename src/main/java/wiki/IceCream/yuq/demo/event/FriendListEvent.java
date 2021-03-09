@@ -68,7 +68,7 @@ public class FriendListEvent {
         System.out.print("LoadItemListEvent");
         ExcelReader reader = null;
 
-        reader = ExcelUtil.getReader("D://123.xls", 0);
+        reader = ExcelUtil.getReader("C://123.xls", 0);
         if(reader != null) {
             for (int i = 1; i < reader.getSheet().getLastRowNum(); i++) {
                 int aCell =(int) reader.getCell(0, i).getNumericCellValue();

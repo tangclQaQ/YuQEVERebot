@@ -40,6 +40,15 @@ public class TestGroupController {
     @Inject
     private SearchMarket searchMarket;
 
+    String help =
+            "1:国服市场查询,格式：.jita 马克瑞级\n" +
+            "2:欧服物价 .ojita+后缀\n" +
+                    "3:彩虹屁功能 \n" +
+                    "4:闲聊功能 \n" +
+                    "5:藏头诗功能，格式：藏头诗 我爱中国 \n" +
+            "目前应该可以自动通过好友申请和群邀请了。\n" +
+            "其他详情可咨询作者QQ：664798563";
+
     /***
      * Before 则为具体的控制器的动作前置验证，也可以称作拦截器，负责在 Action 处理消息之前进行验证。
      *
@@ -102,22 +111,52 @@ public class TestGroupController {
         return searchMarket.caihongpi();
     }
 
+    @Action("藏头诗 {text}")
+    public String cangtoushi(String text) {
+        return searchMarket.cangtoushi(text);
+    }
+
+    @Action("土味情话")
+    public String tuweiqinghua() {
+        return searchMarket.tuweiqinghua();
+    }
+
     @Action("帮助")
-    public Object menu(long qq) {
-        String help = "1:KM记录查询,格式：击坠/损失+角色ID (未完成）\n" +
-                "2:装配方案查询,格式：装配+船只名 (分类复制名称即可回复)不全面，没时间做(未完成）\n" +
-                "3:国服市场查询,格式：.jita 马克瑞级\n" +
-                "4:欧服物价 .ojita+后缀\n" +
-                "5:虫洞查询,格式：虫洞+后缀，要空格。(待开发)\n" +
-                "6:简略角色简介,格式：人物+后缀(待开发)\n" +
-                "7:增强时间查询(未完成）\n" +
-                "8:国服攻略(待开发)\n" +
-                "10：eve状态 格式：实时状态(待开发)\n" +
-                "11：EVE新闻或EVE公告(待开发)\n" +
-                "15::欧服完全攻略(待开发)\n" +
-                "目前应该可以自动通过好友申请和群邀请了。";
+    public Object menu(long qq) {;
         return mif.at(qq).plus(help);
     }
+
+    @Action("菜单")
+    public Object menu1(long qq) {;
+        return mif.at(qq).plus(help);
+    }
+
+    @Action("功能")
+    public Object menu2(long qq) {;
+        return mif.at(qq).plus(help);
+    }
+
+    @Action("测试")
+    public Object ceshi(long qq) {
+        return Message.Companion.toMessageByRainCode("<Rain:Xml:5,&&&lt&&&?xml version=\"1.0\" encoding=\"utf-8\"?&&&gt&&&&&&lt&&&msg serviceID=\"5\" templateID=\"12345\" brief=\"[分享]\" token=\"33b2153a5721e938ed7662bc2699d147\" timestamp=\"1614757667\" nonce=\"1016341428\"&&&gt&&&&&&lt&&&item layout=\"0\"&&&gt&&&&&&lt&&&image uuid=\"{B0730F97-CE29-0123-0AA6-1C2E2AE09FB2}.png\" md5=\"B0730F97CE2901230AA61C2E2AE09FB2\" GroupFiledid=\"2579894839\" minWidth=\"100\" minHeight=\"100\" maxWidth=\"180\" maxHeight=\"180\"/&&&gt&&&&&&lt&&&/item&&&gt&&&&&&lt&&&source name=\"兽耳桌面\" icon=\"http://i.gtimg.cn/open/app_icon/05/78/51/85//1105785185_100_m.png?t=1613970849\" appid=\"1105785185\" action=\"\" i_actionData=\"\" a_actionData=\"\" url=\"\"/&&&gt&&&&&&lt&&&/msg&&&gt&&&>");
+    }
+
+//    @Action("帮助")
+//    public Object menu(long qq) {
+//        String help = "1:KM记录查询,格式：击坠/损失+角色ID (未完成）\n" +
+//                "2:装配方案查询,格式：装配+船只名 (分类复制名称即可回复)不全面，没时间做(未完成）\n" +
+//                "3:国服市场查询,格式：.jita 马克瑞级\n" +
+//                "4:欧服物价 .ojita+后缀\n" +
+//                "5:虫洞查询,格式：虫洞+后缀，要空格。(待开发)\n" +
+//                "6:简略角色简介,格式：人物+后缀(待开发)\n" +
+//                "7:增强时间查询(未完成）\n" +
+//                "8:国服攻略(待开发)\n" +
+//                "10：eve状态 格式：实时状态(待开发)\n" +
+//                "11：EVE新闻或EVE公告(待开发)\n" +
+//                "15::欧服完全攻略(待开发)\n" +
+//                "目前应该可以自动通过好友申请和群邀请了。";
+//        return mif.at(qq).plus(help);
+//    }
 
 
 
