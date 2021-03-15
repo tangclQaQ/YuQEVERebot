@@ -27,6 +27,8 @@ public class SearchMarket {
 
     String cnMarketUrl = "https://www.ceve-market.org/api/market/region/10000002/type/";
     String euMarketUrl = "https://www.ceve-market.org/tqapi/market/region/10000002/type/";
+    public static String secretId;
+    public static String secretKey;
     private final static Charset UTF8 = StandardCharsets.UTF_8;
 
     public String searchMarket(String name, Boolean isCn, int num) {
@@ -211,8 +213,6 @@ public class SearchMarket {
 
     public String chat(String str) {
         //  基本常量参数的定义
-        String secretId = "AKID1u3B7pBm1A2ex1wPi05uXCSSR9tENJwI";
-        String secretKey = "g6F9zZw47ybxby70Wrzt55VffQvCZG4e";
         String region = "ap-guangzhou";
         String terminal = "sdfghjkl1112";
 

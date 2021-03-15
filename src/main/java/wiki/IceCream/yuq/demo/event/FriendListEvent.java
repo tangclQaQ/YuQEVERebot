@@ -17,14 +17,8 @@ import wiki.IceCream.yuq.demo.base.SearchMarket;
 import wiki.IceCream.yuq.demo.controller.TestGroupController;
 
 import javax.inject.Inject;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.io.*;
+import java.util.*;
 
 import static wiki.IceCream.yuq.demo.untils.StaticFunction.qDebug;
 
@@ -77,6 +71,20 @@ public class FriendListEvent {
             }
         }
         System.out.print("数据总数量：" + String.valueOf(itemList.size()) + "\n");
+
+        Properties properties = new Properties();
+        // 使用InPutStream流读取properties文件
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("C:/config.properties"));
+            properties.load(bufferedReader);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // 获取key对应的value值
+        String secretId = properties.getProperty("secretId");
+        String secretKey = properties.getProperty("secretKey");
+        SearchMarket.secretId = secretId;
+        SearchMarket.secretKey = secretKey;
     }
 
     @Event
