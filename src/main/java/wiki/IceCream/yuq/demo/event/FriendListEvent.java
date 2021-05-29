@@ -90,16 +90,16 @@ public class FriendListEvent {
     @Event
     public void newGroupMessageEventt(GroupMessageEvent message) {
         MessageItem iat = message.getMessage().getBody().get(0);
-        for (MessageItem messageItem1 : message.getMessage().getBody()) {
-            if (messageItem1 instanceof Text){
-                Text text = (Text) messageItem1;
-                String textStr = text.getText();
-                textStr = textStr.trim();
-                if(textStr.contains("爱") ||textStr.contains("喜欢")) {
-                    message.getGroup().sendMessage(TestGroupController.getMif().text(searchMarket.caihongpi()).toMessage());
-                }
-            }
-        }
+//        for (MessageItem messageItem1 : message.getMessage().getBody()) {
+//            if (messageItem1 instanceof Text){
+//                Text text = (Text) messageItem1;
+//                String textStr = text.getText();
+//                textStr = textStr.trim();
+//                if(textStr.contains("爱") ||textStr.contains("喜欢")) {
+//                    message.getGroup().sendMessage(TestGroupController.getMif().text(searchMarket.caihongpi()).toMessage());
+//                }
+//            }
+//        }
         if (iat instanceof At){
             At at = (At) iat;
             if (at.getUser() == 2938604711L){

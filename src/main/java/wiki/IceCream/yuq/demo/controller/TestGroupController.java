@@ -106,7 +106,7 @@ public class TestGroupController {
         return searchMarket.chat(param1 + "小微" + param2);
     }
 
-    @Action("{param1}彩虹{param2}")
+    @Action("{param1}彩虹屁{param2}")
     public String caihongpi(String param1, String param2) {
         return searchMarket.caihongpi();
     }
@@ -136,10 +136,10 @@ public class TestGroupController {
         return mif.at(qq).plus(help);
     }
 
-    @Action("测试")
-    public Object ceshi(long qq) {
-        return Message.Companion.toMessageByRainCode("<Rain:Xml:5,&&&lt&&&?xml version=\"1.0\" encoding=\"utf-8\"?&&&gt&&&&&&lt&&&msg serviceID=\"5\" templateID=\"12345\" brief=\"[分享]\" token=\"33b2153a5721e938ed7662bc2699d147\" timestamp=\"1614757667\" nonce=\"1016341428\"&&&gt&&&&&&lt&&&item layout=\"0\"&&&gt&&&&&&lt&&&image uuid=\"{B0730F97-CE29-0123-0AA6-1C2E2AE09FB2}.png\" md5=\"B0730F97CE2901230AA61C2E2AE09FB2\" GroupFiledid=\"2579894839\" minWidth=\"100\" minHeight=\"100\" maxWidth=\"180\" maxHeight=\"180\"/&&&gt&&&&&&lt&&&/item&&&gt&&&&&&lt&&&source name=\"兽耳桌面\" icon=\"http://i.gtimg.cn/open/app_icon/05/78/51/85//1105785185_100_m.png?t=1613970849\" appid=\"1105785185\" action=\"\" i_actionData=\"\" a_actionData=\"\" url=\"\"/&&&gt&&&&&&lt&&&/msg&&&gt&&&>");
-    }
+//    @Action("测试")
+//    public Object ceshi(long qq) {
+//        return Message.Companion.toMessageByRainCode("<Rain:Xml:5,&&&lt&&&?xml version=\"1.0\" encoding=\"utf-8\"?&&&gt&&&&&&lt&&&msg serviceID=\"5\" templateID=\"12345\" brief=\"[分享]\" token=\"33b2153a5721e938ed7662bc2699d147\" timestamp=\"1614757667\" nonce=\"1016341428\"&&&gt&&&&&&lt&&&item layout=\"0\"&&&gt&&&&&&lt&&&image uuid=\"{B0730F97-CE29-0123-0AA6-1C2E2AE09FB2}.png\" md5=\"B0730F97CE2901230AA61C2E2AE09FB2\" GroupFiledid=\"2579894839\" minWidth=\"100\" minHeight=\"100\" maxWidth=\"180\" maxHeight=\"180\"/&&&gt&&&&&&lt&&&/item&&&gt&&&&&&lt&&&source name=\"兽耳桌面\" icon=\"http://i.gtimg.cn/open/app_icon/05/78/51/85//1105785185_100_m.png?t=1613970849\" appid=\"1105785185\" action=\"\" i_actionData=\"\" a_actionData=\"\" url=\"\"/&&&gt&&&&&&lt&&&/msg&&&gt&&&>");
+//    }
 
 //    @Action("帮助")
 //    public Object menu(long qq) {

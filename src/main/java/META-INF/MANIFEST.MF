@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Main-Class: wiki.IceCream.yuq.demo.Start
+Class-Path: kotlin-stdlib-jdk7-1.3.61.jar kotlin-reflect-1.3.61.jar comm
+ ons-collections4-4.1.jar hutool-poi-5.2.5.jar javax.json-api-1.1.2.jar 
+ asm-8.0.1.jar guava-17.0.jar YuQ-0.1.0.0-DEV14.jar kotlin-stdlib-common
+ -1.4.10.jar hutool-core-5.2.5.jar commons-collections-3.2.1.jar poi-oox
+ ml-schemas-3.17.jar xmlbeans-2.6.0.jar javax.json-1.1.2.jar kotlinx-cor
+ outines-core-1.4.0.jar YuQ-ArtQQ-0.0.6.10-R37.jar auto-common-0.3.jar a
+ sm-analysis-8.0.1.jar kotlin-stdlib-jdk8-1.3.61.jar jprotobuf-2.4.3.jar
+  Yu-Core-0.2.0.0-DEV6.jar hutool-log-5.2.5.jar tornadofx-1.7.20.jar poi
+ -ooxml-3.17.jar asm-tree-8.0.1.jar asm-util-8.0.1.jar javax.inject-1.ja
+ r slf4j-api-1.7.2.jar gson-2.8.6.jar auto-service-1.0-rc2.jar curvesapi
+ -1.04.jar logback-classic-1.2.3.jar protobuf-java-3.12.1.jar commons-la
+ ng-2.4.jar stax-api-1.0.1.jar okhttp-4.8.1.jar jprotobuf-protoparser-1.
+ 0.1.jar logback-core-1.2.3.jar commons-codec-1.10.jar poi-3.17.jar java
+ ssist-3.12.1.GA.jar auto-value-1.0-rc2.jar snakeyaml-1.27.jar kotlin-st
+ dlib-1.4.10.jar commons-io-2.6.jar okio-2.7.0.jar annotations-13.0.jar 
+ asm-commons-8.0.1.jar tras-1.0.jar ecj-3.22.0.jar validation-api-1.1.0.
+ Final.jar fastjson-1.2.73.jar velocity-1.7.jar ehcache-2.10.2.jar ArtQQ
+ -1.0.882.jar
+
